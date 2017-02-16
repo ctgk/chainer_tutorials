@@ -1,2 +1,2 @@
 # chainer_tutorials
-Simple tutorials of Chainer framework from Preferred Networks
+Inspired by nlintz's [TensorFlow-Tutorials](https://github.com/nlintz/TensorFlow-Tutorials), this repository introduces simple code of neural networks using Chainer framework.
