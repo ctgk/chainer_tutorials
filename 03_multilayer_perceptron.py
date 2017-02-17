@@ -31,17 +31,15 @@ optimizer = chainer.optimizers.SGD(lr=0.05)
 optimizer.use_cleargrads()
 optimizer.setup(model)
 
-for i in range(1, 101):
+for i in range(1, 11):
     for j in range(0, len(x_train), 100):
         model.cleargrads()
         logit = model(x_train[j: j + 100])
         loss = F.softmax_cross_entropy(logit, y_train[j: j + 100])
         loss.backward()
         optimizer.update()
-    indices = np.random.choice(10000, 100, replace=False)
-    accuracy = np.mean(
-        y_test[indices] == np.argmax(model(x_test[indices]).data, 1))
-    print("step {0:03d}, accuracy {1:.02f}".format(i, accuracy))
+    accuracy = F.accuracy(model(x_test), y_test)
+    print("epoch {0:02d}, accuracy {1:.02f}".format(i, accuracy.data.item()))
     indices = np.random.permutation(len(x_train))
     x_train = x_train[indices]
     y_train = y_train[indices]
