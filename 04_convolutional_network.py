@@ -42,11 +42,11 @@ model = CNN()
 if args.gpu >= 0:
     chainer.cuda.get_device(args.gpu).use()
     model.to_gpu()
-xp = chainer.cuda.cupy if args.gpu >= 0 else np
-x_train = xp.asarray(x_train)
-x_test = xp.asarray(x_test)
-y_train = xp.asarray(y_train)
-y_test = xp.asarray(y_test)
+    xp = chainer.cuda.cupy
+    x_train = xp.asarray(x_train)
+    x_test = xp.asarray(x_test)
+    y_train = xp.asarray(y_train)
+    y_test = xp.asarray(y_test)
 
 optimizer = chainer.optimizers.Adam(alpha=1e-4)
 optimizer.use_cleargrads()
