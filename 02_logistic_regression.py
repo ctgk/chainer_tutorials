@@ -27,8 +27,7 @@ for i in range(1, 101):
         loss.backward()
         optimizer.update()
     indices = np.random.choice(10000, 100, replace=False)
-    accuracy = np.mean(
-        y_test[indices] == np.argmax(model(x_test[indices]).data, 1))
+    accuracy = F.accuracy(model(x_test), y_test).data.item()
     print("step {0:03d}, accuracy {1:.02f}".format(i, accuracy))
     indices = np.random.permutation(len(x_train))
     x_train = x_train[indices]
